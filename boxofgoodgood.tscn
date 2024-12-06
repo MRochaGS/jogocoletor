@@ -1,0 +1,114 @@
+[gd_scene load_steps=8 format=3 uid="uid://de47avos6h3rt"]
+
+[ext_resource type="Script" path="res://boxofgoodgood.gd" id="1_hbohj"]
+[ext_resource type="Texture2D" uid="uid://daya1qbpyptjy" path="res://boxofgoodgood.png" id="2_8h4dg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fss4w"]
+radius = 280.0
+
+[sub_resource type="Animation" id="Animation_jj4ym"]
+resource_name = "CoinCollected"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2.5, 2.5)]
+}
+
+[sub_resource type="Animation" id="Animation_v2810"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kwyr1"]
+resource_name = "SwordCollected"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(0.75, 0.75)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qvhve"]
+_data = {
+"CoinCollected": SubResource("Animation_jj4ym"),
+"RESET": SubResource("Animation_v2810"),
+"SwordCollected": SubResource("Animation_kwyr1")
+}
+
+[node name="boxofgoodgood" type="Area2D" groups=["Coin"]]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_hbohj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8h4dg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 2.72044
+shape = SubResource("CircleShape2D_fss4w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qvhve")
+}
+speed_scale = 2.3
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

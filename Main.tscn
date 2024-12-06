@@ -1,0 +1,472 @@
+[gd_scene load_steps=39 format=3 uid="uid://ce5gsk57vt00s"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_kybbk"]
+[ext_resource type="PackedScene" uid="uid://woia2loyyxwe" path="res://Coin.tscn" id="2_8qwvk"]
+[ext_resource type="PackedScene" uid="uid://ltcudyjxydpw" path="res://ConfettiParticles.tscn" id="3_n1orf"]
+[ext_resource type="FontFile" uid="uid://d154bnr8aqaxq" path="res://kenvector_future_thin.ttf" id="4_11fx1"]
+[ext_resource type="Texture2D" uid="uid://c8fqqm5i67105" path="res://chaoterra.png" id="4_yl51t"]
+[ext_resource type="Texture2D" uid="uid://cml62kflhehpn" path="res://Heart.png" id="5_cp8bg"]
+[ext_resource type="Script" path="res://Player.gd" id="6_tv2gb"]
+[ext_resource type="Texture2D" uid="uid://yptrywy0f8q0" path="res://tocoofmadeira.png" id="7_ep8fu"]
+[ext_resource type="Texture2D" uid="uid://bl2x08vux61ju" path="res://Player/BackSimples.png" id="7_m3gh3"]
+[ext_resource type="PackedScene" uid="uid://c6kf520ffeaha" path="res://obstacul.tscn" id="8_4n3ek"]
+[ext_resource type="Texture2D" uid="uid://dxnu45uhhbnq4" path="res://Player/DeathSimples.png" id="8_p61q2"]
+[ext_resource type="Texture2D" uid="uid://ykorvef4d2wp" path="res://Player/FrontSimples.png" id="9_8mbbd"]
+[ext_resource type="Texture2D" uid="uid://b38x2yt4xgech" path="res://Player/IdleSimples.png" id="10_fqh33"]
+[ext_resource type="Texture2D" uid="uid://co7p5qv3e852s" path="res://Player/WalkSimples.png" id="11_t5ksw"]
+[ext_resource type="Script" path="res://GameOver.gd" id="13_2w7s7"]
+[ext_resource type="AudioStream" uid="uid://bffs46h6f0h5y" path="res://sons/fase1.wav" id="14_nrs6u"]
+
+[sub_resource type="Animation" id="Animation_whoi3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CoinsLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lgt61"]
+resource_name = "ScoreIncreased"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CoinsLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ixifg"]
+_data = {
+"RESET": SubResource("Animation_whoi3"),
+"ScoreIncreased": SubResource("Animation_lgt61")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ec6f5"]
+atlas = ExtResource("7_m3gh3")
+region = Rect2(0, 0, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qcsc"]
+atlas = ExtResource("7_m3gh3")
+region = Rect2(13, 0, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_co4aa"]
+atlas = ExtResource("7_m3gh3")
+region = Rect2(26, 0, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk0mg"]
+atlas = ExtResource("7_m3gh3")
+region = Rect2(39, 0, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2fme"]
+atlas = ExtResource("8_p61q2")
+region = Rect2(0, 0, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cga55"]
+atlas = ExtResource("9_8mbbd")
+region = Rect2(0, 0, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_win0t"]
+atlas = ExtResource("9_8mbbd")
+region = Rect2(13, 0, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5lr4"]
+atlas = ExtResource("9_8mbbd")
+region = Rect2(26, 0, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ju4w"]
+atlas = ExtResource("9_8mbbd")
+region = Rect2(39, 0, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irdps"]
+atlas = ExtResource("10_fqh33")
+region = Rect2(0, 0, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45ee0"]
+atlas = ExtResource("10_fqh33")
+region = Rect2(13, 0, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ms82m"]
+atlas = ExtResource("10_fqh33")
+region = Rect2(26, 0, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6wrh"]
+atlas = ExtResource("10_fqh33")
+region = Rect2(39, 0, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6utg"]
+atlas = ExtResource("11_t5ksw")
+region = Rect2(0, 0, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcj11"]
+atlas = ExtResource("11_t5ksw")
+region = Rect2(15, 0, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls7ei"]
+atlas = ExtResource("11_t5ksw")
+region = Rect2(30, 0, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7lug"]
+atlas = ExtResource("11_t5ksw")
+region = Rect2(45, 0, 15, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bf3oy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ec6f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qcsc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_co4aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk0mg")
+}],
+"loop": true,
+"name": &"Back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2fme")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cga55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_win0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5lr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ju4w")
+}],
+"loop": true,
+"name": &"Front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irdps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45ee0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ms82m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6wrh")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6utg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcj11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls7ei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7lug")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62tl5"]
+size = Vector2(5.88581, 13.4066)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_kybbk")
+coin = ExtResource("2_8qwvk")
+confetti = ExtResource("3_n1orf")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -45.0
+offset_right = 576.0
+offset_bottom = 1027.0
+texture = ExtResource("4_yl51t")
+stretch_mode = 1
+
+[node name="CoinsLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -132.0
+offset_top = 20.0
+offset_right = 133.0
+offset_bottom = 88.0
+grow_horizontal = 2
+pivot_offset = Vector2(132, 34)
+theme_override_fonts/font = ExtResource("4_11fx1")
+theme_override_font_sizes/font_size = 60
+text = "Coins: 0"
+
+[node name="LevelLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -143.0
+offset_top = 93.0
+offset_right = 144.0
+offset_bottom = 161.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_11fx1")
+theme_override_font_sizes/font_size = 60
+text = "Level: 1"
+
+[node name="UpButton" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -175.0
+offset_right = 38.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DownButton" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -86.0
+offset_right = 38.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="RightButton" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 53.0
+offset_top = -86.0
+offset_right = 128.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LeftButton" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -86.0
+offset_right = -52.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HealthBar" type="TextureProgressBar" parent="UI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 10000.0
+value = 10000.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = ExtResource("5_cp8bg")
+
+[node name="CoinsLabelAnimationPlayer" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_ixifg")
+}
+speed_scale = 3.5
+
+[node name="Tocoofmadeira" type="Sprite2D" parent="."]
+modulate = Color(0.577008, 0.577008, 0.577008, 1)
+position = Vector2(144, 684)
+scale = Vector2(0.475, 0.315)
+texture = ExtResource("7_ep8fu")
+
+[node name="Tocoofmadeira2" type="Sprite2D" parent="."]
+modulate = Color(0.577008, 0.577008, 0.577008, 1)
+position = Vector2(382, 319)
+scale = Vector2(0.475, 0.315)
+texture = ExtResource("7_ep8fu")
+
+[node name="Tocoofmadeira3" type="Sprite2D" parent="."]
+modulate = Color(0.577008, 0.577008, 0.577008, 1)
+position = Vector2(187, 345)
+scale = Vector2(0.475, 0.315)
+texture = ExtResource("7_ep8fu")
+
+[node name="obstacul" parent="." instance=ExtResource("8_4n3ek")]
+position = Vector2(187, 345)
+scale = Vector2(2, 1.326)
+
+[node name="obstacul2" parent="." instance=ExtResource("8_4n3ek")]
+position = Vector2(382, 318)
+scale = Vector2(2, 1.326)
+
+[node name="obstacul3" parent="." instance=ExtResource("8_4n3ek")]
+position = Vector2(144, 684)
+scale = Vector2(2, 1.326)
+
+[node name="Player" type="Area2D" parent="." groups=["Player"]]
+position = Vector2(270, 480)
+scale = Vector2(3.05821, 3.05821)
+script = ExtResource("6_tv2gb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_bf3oy")
+animation = &"Walk"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+scale = Vector2(1.44834, 0.961065)
+shape = SubResource("RectangleShape2D_62tl5")
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_2w7s7")
+
+[node name="Background" type="ColorRect" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.882353)
+
+[node name="GameOverTitle" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -189.0
+offset_top = 33.0
+offset_right = 190.0
+offset_bottom = 101.0
+grow_horizontal = 2
+pivot_offset = Vector2(132, 34)
+theme_override_fonts/font = ExtResource("4_11fx1")
+theme_override_font_sizes/font_size = 60
+text = "tropeçou na
+madeira antes
+de ter
+dinheiro!!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.5
+offset_top = -80.0
+offset_right = 190.5
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="GameOver/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_11fx1")
+theme_override_font_sizes/font_size = 50
+text = "Play Again"
+
+[node name="HomeButton" type="Button" parent="GameOver/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_11fx1")
+theme_override_font_sizes/font_size = 50
+text = "Home"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 45.0
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_nrs6u")
+pitch_scale = 0.5
+autoplay = true
+
+[connection signal="button_down" from="UI/UpButton" to="Player" method="_on_up_button_button_down"]
+[connection signal="button_up" from="UI/UpButton" to="Player" method="_on_up_button_button_up"]
+[connection signal="button_down" from="UI/DownButton" to="Player" method="_on_down_button_button_down"]
+[connection signal="button_up" from="UI/DownButton" to="Player" method="_on_down_button_button_up"]
+[connection signal="button_down" from="UI/RightButton" to="Player" method="_on_right_button_button_down"]
+[connection signal="button_up" from="UI/RightButton" to="Player" method="_on_right_button_button_up"]
+[connection signal="button_down" from="UI/LeftButton" to="Player" method="_on_left_button_button_down"]
+[connection signal="button_up" from="UI/LeftButton" to="Player" method="_on_left_button_button_up"]
+[connection signal="area_entered" from="Player" to="Player" method="_on_area_entered"]
+[connection signal="pressed" from="GameOver/VBoxContainer/PlayAgainButton" to="GameOver" method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="GameOver/VBoxContainer/HomeButton" to="GameOver" method="_on_home_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
